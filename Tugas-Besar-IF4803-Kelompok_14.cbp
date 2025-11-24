@@ -32,7 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Film.h" />
+		<Unit filename="Film_103012400185.cpp" />
+		<Unit filename="Film_103012400211.cpp" />
+		<Unit filename="Sutradara.h" />
+		<Unit filename="Sutradara_103012400185.cpp" />
+		<Unit filename="Sutradara_103012400211.cpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="main_admin.cpp" />
+		<Unit filename="main_user.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

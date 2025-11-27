@@ -5,10 +5,10 @@
 using namespace std;
 
 struct Sutradara;
-typedef Sutradara* adrSutradara;
+typedef Sutradara *adrSutradara;
 
 struct Film;
-typedef Film* adrFilm;
+typedef Film *adrFilm;
 
 struct Film {
     string id;

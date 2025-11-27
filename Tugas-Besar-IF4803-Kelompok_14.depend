@@ -1,19 +1,21 @@
 # depslib dependency file v1.0
-1763992903 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
+1764062973 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
 	<iostream>
+	<string>
 	"Sutradara.h"
 	"Film.h"
 
-1763994347 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
+1764224028 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
 	<iostream>
 	<string>
 
-1763994349 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
+1764062893 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
 	<iostream>
 	<string>
 
-1763992902 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
+1764062972 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
 	<iostream>
+	<string>
 	"Sutradara.h"
 	"Film.h"
 

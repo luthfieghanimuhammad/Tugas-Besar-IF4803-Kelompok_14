@@ -16,9 +16,11 @@ struct Film {
     int tahun;
     adrFilm next;
 };
+
 struct ListFilm {
     adrFilm first;
 };
+
 adrFilm buatFilmNode(string id, string judul, int tahun);
 adrFilm cariFilmById(adrSutradara S, string id);
 void adminTambahFilm(ListSutradara &L);

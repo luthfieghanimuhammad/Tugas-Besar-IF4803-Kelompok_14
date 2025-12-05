@@ -2,13 +2,13 @@
 #define FILM_H_INCLUDED
 #include <iostream>
 #include <string>
+#include "Sutradara.h"
 using namespace std;
-
 struct Sutradara;
-typedef Sutradara *adrSutradara;
+typedef Sutradara* adrSutradara;
 
 struct Film;
-typedef Film *adrFilm;
+typedef Film* adrFilm;
 
 struct Film {
     string id;
@@ -23,8 +23,12 @@ struct ListFilm {
 
 adrFilm buatFilmNode(string id, string judul, int tahun);
 adrFilm cariFilmById(adrSutradara S, string id);
-void adminTambahFilm(ListSutradara &L);
-void adminHapusFilm(ListSutradara &L);
+void insertFirstFilm(adrSutradara S, adrFilm F);
+void insertLastFilm(adrSutradara S, adrFilm F);
+void insertAfterFilm(adrSutradara S, string idPatokan, adrFilm F);
+void deleteFirstFilm(adrSutradara S);
+void deleteLastFilm(adrSutradara S);
+void deleteAfterFilm(adrSutradara S, string idPatokan);
 void adminUbahFilm(ListSutradara &L);
 void adminTampilSemuaFilm(ListSutradara L);
 void userCariFilmByJudul(ListSutradara L);

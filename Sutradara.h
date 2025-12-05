@@ -5,10 +5,10 @@
 using namespace std;
 
 struct Film;
-typedef Film *adrFilm;
+typedef Film* adrFilm;
 
 struct Sutradara;
-typedef Sutradara *adrSutradara;
+typedef Sutradara* adrSutradara;
 
 struct Sutradara {
     string id;
@@ -27,8 +27,12 @@ void buatList(ListSutradara &L);
 adrSutradara buatSutradaraNode(string id, string nama);
 adrSutradara cariSutradaraById(ListSutradara L, string id);
 void hapusSemuaFilm(adrSutradara S);
-void adminTambahSutradara(ListSutradara &L);
-void adminHapusSutradara(ListSutradara &L);
+void insertFirstSutradara(ListSutradara &L, adrSutradara S);
+void insertLastSutradara(ListSutradara &L, adrSutradara S);
+void insertAfterSutradara(ListSutradara &L, string idPatokan, adrSutradara S);
+void deleteFirstSutradara(ListSutradara &L);
+void deleteLastSutradara(ListSutradara &L);
+void deleteAfterSutradara(ListSutradara &L, string idPatokan);
 void adminUbahSutradara(ListSutradara &L);
 void adminTampilSemuaSutradara(ListSutradara L);
 void userCariSutradaraByNama(ListSutradara L);

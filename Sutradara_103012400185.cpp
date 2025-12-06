@@ -7,13 +7,13 @@ using namespace std;
 void buatList(ListSutradara &L) {
     L.first = nullptr;
     L.last = nullptr;
-    cout << "[INFO] List sutradara berhasil diinisialisasi.\n";
 }
 
-adrSutradara buatSutradaraNode(string id, string nama) {
+adrSutradara buatSutradaraNode(string id, string nama, int umur) {
     adrSutradara S = new Sutradara;
     S->id = id;
     S->nama = nama;
+    S->umur = umur;
     S->firstFilm = nullptr;
     S->next = nullptr;
     S->prev = nullptr;
@@ -21,23 +21,12 @@ adrSutradara buatSutradaraNode(string id, string nama) {
 }
 
 adrSutradara cariSutradaraById(ListSutradara L, string id) {
-    adrSutradara S = L.first;
-    while (S != nullptr) {
-        if (S->id == id)
-            return S;
-        S = S->next;
+    adrSutradara P = L.first;
+    while (P != nullptr) {
+        if (P->id == id) return P;
+        P = P->next;
     }
     return nullptr;
-}
-
-void hapusSemuaFilm(adrSutradara S) {
-    adrFilm F = S->firstFilm;
-    while (F != nullptr) {
-        adrFilm temp = F;
-        F = F->next;
-        delete temp;
-    }
-    S->firstFilm = nullptr;
 }
 
 void insertFirstSutradara(ListSutradara &L, adrSutradara S) {
@@ -49,7 +38,6 @@ void insertFirstSutradara(ListSutradara &L, adrSutradara S) {
         L.first->prev = S;
         L.first = S;
     }
-    cout << "[SUKSES] Sutradara berhasil ditambahkan di posisi awal.\n";
 }
 
 void insertLastSutradara(ListSutradara &L, adrSutradara S) {
@@ -61,59 +49,56 @@ void insertLastSutradara(ListSutradara &L, adrSutradara S) {
         S->prev = L.last;
         L.last = S;
     }
-    cout << "[SUKSES] Sutradara berhasil ditambahkan di posisi akhir.\n";
 }
 
-void insertAfterSutradara(ListSutradara &L, string idYangDitentukan, adrSutradara S) {
-    adrSutradara P = cariSutradaraById(L, idYangDitentukan);
-    if (P == nullptr) {
-        cout << "[GAGAL] ID sutradara yang ditentukan tidak ditemukan. Penambahan dibatalkan.\n";
+void adminInsertFirstSutradara(ListSutradara &L) {
+    string id, nama;
+    int umur;
+    cout << "ID Sutradara: ";
+    cin >> id;
+    cin.ignore();
+    cout << "Nama Sutradara: ";
+    getline(cin, nama);
+    cout << "Umur: ";
+    cin >> umur;
+    adrSutradara S = buatSutradaraNode(id, nama, umur);
+    insertFirstSutradara(L, S);
+    cout << "Sutradara berhasil ditambahkan di awal!\n";
+}
+
+void adminInsertLastSutradara(ListSutradara &L) {
+    string id, nama;
+    int umur;
+    cout << "ID Sutradara: ";
+    cin >> id;
+    cin.ignore();
+    cout << "Nama Sutradara: ";
+    getline(cin, nama);
+    cout << "Umur: ";
+    cin >> umur;
+    adrSutradara S = buatSutradaraNode(id, nama, umur);
+    insertLastSutradara(L, S);
+    cout << "Sutradara berhasil ditambahkan di akhir!\n";
+}
+
+void adminInsertAfterSutradara(ListSutradara &L) {
+    string idPatokan, id, nama;
+    int umur;
+    cout << "ID Sutradara Patokan: ";
+    cin >> idPatokan;
+    adrSutradara Prec = cariSutradaraById(L, idPatokan);
+    if (Prec == nullptr) {
+        cout << "Sutradara patokan tidak ditemukan!\n";
         return;
     }
-    S->next = P->next;
-    S->prev = P;
-    if (P->next != nullptr)
-        P->next->prev = S;
-    else
-        L.last = S;
-    P->next = S;
-    cout << "[SUKSES] Sutradara berhasil ditambahkan setelah ID yang ditentukan.\n";
+    cout << "ID Sutradara Baru: ";
+    cin >> id;
+    cin.ignore();
+    cout << "Nama Sutradara: ";
+    getline(cin, nama);
+    cout << "Umur: ";
+    cin >> umur;
+    adrSutradara S = buatSutradaraNode(id, nama, umur);
+    insertAfterSutradara(L, idPatokan, S);
+    cout << "Sutradara berhasil ditambahkan setelah " << idPatokan << "!\n";
 }
-
-void deleteFirstSutradara(ListSutradara &L) {
-    if (L.first == nullptr) {
-        cout << "[GAGAL] Tidak terdapat data sutradara untuk dihapus.\n";
-        return;
-    }
-    adrSutradara P = L.first;
-    if (L.first == L.last) {
-        L.first = nullptr;
-        L.last = nullptr;
-    } else {
-        L.first = P->next;
-        L.first->prev = nullptr;
-    }
-    hapusSemuaFilm(P);
-    delete P;
-    cout << "[SUKSES] Sutradara pada posisi awal berhasil dihapus.\n";
-}
-
-void deleteLastSutradara(ListSutradara &L) {
-    if (L.first == nullptr) {
-        cout << "[GAGAL] Tidak terdapat data sutradara untuk dihapus.\n";
-        return;
-    }
-    adrSutradara P = L.last;
-    if (L.first == L.last) {
-        L.first = nullptr;
-        L.last = nullptr;
-    } else {
-        L.last = P->prev;
-        L.last->next = nullptr;
-    }
-    hapusSemuaFilm(P);
-    delete P;
-    cout << "[SUKSES] Sutradara pada posisi akhir berhasil dihapus.\n";
-}
-
-

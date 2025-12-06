@@ -1,48 +1,57 @@
 # depslib dependency file v1.0
-1764997032 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
+1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
 	<iostream>
 	<string>
 	"Film.h"
 	"Sutradara.h"
 
-1765000312 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
+1765033440 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
 	<iostream>
 	<string>
+	"Film.h"
 
-1764995725 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
-	<iostream>
-	<string>
-	"Sutradara.h"
-
-1764998269 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
+1765034490 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
 	<iostream>
 	<string>
 	"Sutradara.h"
-	"Film.h"
 
-1764998347 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main.cpp
-	<iostream>
-	"Sutradara.h"
-	"Film.h"
-
-1764998347 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_admin.cpp
-	<iostream>
-	"Sutradara.h"
-	"Film.h"
-
-1764998347 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_user.cpp
-	<iostream>
-	"Sutradara.h"
-	"Film.h"
-
-1764991989 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400185.cpp
+1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
 	<iostream>
 	<string>
 	"Sutradara.h"
 	"Film.h"
 
-1764998284 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400211.cpp
+1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main.cpp
 	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_admin.cpp
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_user.cpp
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400185.cpp
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1765031486 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400211.cpp
+	<iostream>
+	<string>
 	"Sutradara.h"
 	"Film.h"
 

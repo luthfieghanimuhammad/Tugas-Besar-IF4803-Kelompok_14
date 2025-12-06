@@ -1,41 +1,47 @@
 # depslib dependency file v1.0
-1764942469 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
+1764991923 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
 	<iostream>
-	"Sutradara.h"
+	<string>
 	"Film.h"
+	"Sutradara.h"
 
-1764936541 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
+1764996409 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
 	<iostream>
 	<string>
 
-1764919682 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
+1764995725 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
 	<iostream>
 	<string>
 	"Sutradara.h"
 
-1764942469 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
+1764995880 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1764995862 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main.cpp
 	<iostream>
 	"Sutradara.h"
 	"Film.h"
 
-1764941792 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main.cpp
-
-1764942469 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_admin.cpp
+1764995880 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_admin.cpp
 	<iostream>
 	"Sutradara.h"
 	"Film.h"
 
-1764942469 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_user.cpp
+1764995880 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_user.cpp
 	<iostream>
 	"Sutradara.h"
 	"Film.h"
 
-1764942469 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400185.cpp
+1764991989 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400185.cpp
 	<iostream>
+	<string>
 	"Sutradara.h"
 	"Film.h"
 
-1764942469 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400211.cpp
+1764995892 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400211.cpp
 	<iostream>
 	"Sutradara.h"
 	"Film.h"

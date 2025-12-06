@@ -1,147 +1,123 @@
 #include <iostream>
+#include <string>
 #include "Sutradara.h"
 #include "Film.h"
 using namespace std;
 
-void deleteAfterSutradara(ListSutradara &L, string idYangDitentukan) {
-    adrSutradara P = cariSutradaraById(L, idYangDitentukan);
-    if (P == nullptr || P->next == nullptr) {
-        cout << "[GAGAL] Tidak terdapat data setelah ID yang ditentukan atau ID tidak ditemukan.\n";
-        return;
+void insertAfterSutradara(ListSutradara &L, string idPatokan, adrSutradara S) {
+    adrSutradara P = cariSutradaraById(L, idPatokan);
+    if (P != nullptr) {
+        S->next = P->next;
+        S->prev = P;
+
+        if (P->next != nullptr) {
+            P->next->prev = S;
+        } else {
+            L.last = S;
+        }
+        P->next = S;
     }
-    adrSutradara Q = P->next;
-    P->next = Q->next;
-    if (Q->next != nullptr)
-        Q->next->prev = P;
-    else
-        L.last = P;
-    hapusSemuaFilm(Q);
-    delete Q;
-    cout << "[SUKSES] Sutradara setelah ID yang ditentukan berhasil dihapus.\n";
 }
 
-void adminUbahSutradara(ListSutradara &L) {
-    string id, namaBaru;
-    cout << "\n=== UBAH DATA SUTRADARA ===\n";
-    cout << "Masukkan ID Sutradara : ";
-    cin >> id;
-    adrSutradara S = cariSutradaraById(L, id);
-    if (S == nullptr) {
-        cout << "[GAGAL] ID Sutradara tidak ditemukan.\n";
-        return;
+void deleteFirstSutradara(ListSutradara &L) {
+    if (L.first != nullptr) {
+        adrSutradara P = L.first;
+        if (L.first == L.last) {
+            L.first = nullptr;
+            L.last = nullptr;
+        } else {
+            L.first = L.first->next;
+            L.first->prev = nullptr;
+        }
+        delete P;
     }
-    cout << "Nama Baru : ";
-    cin >> namaBaru;
-    S->nama = namaBaru;
-    cout << "[SUKSES] Data sutradara berhasil diperbarui.\n";
+}
+
+void deleteLastSutradara(ListSutradara &L) {
+    if (L.last != nullptr) {
+        adrSutradara P = L.last;
+        if (L.first == L.last) {
+            L.first = nullptr;
+            L.last = nullptr;
+        } else {
+            L.last = L.last->prev;
+            L.last->next = nullptr;
+        }
+        delete P;
+    }
+}
+
+void deleteAfterSutradara(ListSutradara &L, string idPatokan) {
+    adrSutradara P = cariSutradaraById(L, idPatokan);
+    if (P != nullptr && P->next != nullptr) {
+        adrSutradara Q = P->next;
+
+        P->next = Q->next;
+        if (Q->next != nullptr) {
+            Q->next->prev = P;
+        } else {
+            L.last = P;
+        }
+        delete Q;
+    }
 }
 
 void adminTampilSemuaSutradara(ListSutradara L) {
-    cout << "\n=== DAFTAR SUTRADARA ===\n";
-    adrSutradara S = L.first;
-    if (S == nullptr) {
-        cout << "[INFO] Belum ada data sutradara.\n";
+    adrSutradara P = L.first;
+    cout << "\n===== DATA SUTRADARA =====\n";
+    while (P != nullptr) {
+        cout << "ID: " << P->id
+             << " | Nama: " << P->nama
+             << " | Umur: " << P->umur << endl;
+        P = P->next;
+    }
+}
+
+adrSutradara findSutradara(ListSutradara L, string id) {
+    adrSutradara P = L.first;
+    while (P != nullptr) {
+        if (P->id == id) {
+            return P;
+        }
+        P = P->next;
+    }
+    return nullptr;
+}
+
+void adminDeleteFirstSutradara(ListSutradara &L) {
+    if (L.first == nullptr) {
+        cout << "List kosong!\n";
         return;
     }
-    while (S != nullptr) {
-        cout << "ID: " << S->id << " | Nama: " << S->nama << endl;
-        S = S->next;
+    deleteFirstSutradara(L);
+    cout << "Sutradara pertama berhasil dihapus!\n";
+}
+
+void adminDeleteLastSutradara(ListSutradara &L) {
+    if (L.first == nullptr) {
+        cout << "List kosong!\n";
+        return;
     }
+    deleteLastSutradara(L);
+    cout << "Sutradara terakhir berhasil dihapus!\n";
 }
 
-void userCariSutradaraByNama(ListSutradara L) {
-    string nama;
-    cout << "\n=== CARI SUTRADARA BERDASARKAN NAMA ===\n";
-    cout << "Masukkan Nama : ";
-    cin >> nama;
-    adrSutradara S = L.first;
-    bool ditemukan = false;
-    while (S != nullptr) {
-        if (S->nama == nama) {
-            cout << "[DITEMUKAN] ID: " << S->id << " | Nama: " << S->nama << endl;
-            ditemukan = true;
-        }
-        S = S->next;
-    }
-    if (!ditemukan)
-        cout << "[GAGAL] Sutradara dengan nama tersebut tidak ditemukan.\n";
-}
+void adminDeleteAfterSutradara(ListSutradara &L) {
+    string idPatokan;
+    cout << "ID Sutradara Patokan: ";
+    cin >> idPatokan;
 
-void userCariSutradaraById(ListSutradara L) {
-    string id;
-    cout << "\n=== CARI SUTRADARA BERDASARKAN ID ===\n";
-    cout << "Masukkan ID : ";
-    cin >> id;
-    adrSutradara S = cariSutradaraById(L, id);
-    if (S == nullptr)
-        cout << "[GAGAL] ID Sutradara tidak ditemukan.\n";
-    else
-        cout << "[DITEMUKAN] ID: " << S->id << " | Nama: " << S->nama << endl;
-}
-
-void userTampilFilmPerSutradara(ListSutradara L) {
-    cout << "\n=== DAFTAR FILM PER SUTRADARA ===\n";
-    adrSutradara S = L.first;
-    if (S == nullptr) {
-        cout << "[INFO] Tidak terdapat data sutradara.\n";
+    adrSutradara P = cariSutradaraById(L, idPatokan);
+    if (P == nullptr) {
+        cout << "Sutradara patokan tidak ditemukan!\n";
         return;
     }
 
-    while (S != nullptr) {
-        cout << "\nSutradara : " << S->nama << endl;
-        adrFilm F = S->firstFilm;
-        if (F == nullptr)
-            cout << "  (Tidak memiliki film)\n";
-        while (F != nullptr) {
-            cout << "  ID: " << F->id
-                 << " | Judul: " << F->judul
-                 << " | Tahun: " << F->tahun << endl;
-            F = F->next;
-        }
-        S = S->next;
-    }
-}
-
-void userSutradaraTerbanyakFilm(ListSutradara L) {
-    cout << "\n=== SUTRADARA DENGAN TOTAL FILM TERBANYAK ===\n";
-    adrSutradara S = L.first;
-    int maxFilm = -1;
-    while (S != nullptr) {
-        int count = 0;
-        adrFilm F = S->firstFilm;
-        while (F != nullptr) {
-            count++;
-            F = F->next;
-        }
-        if (count > maxFilm)
-            maxFilm = count;
-        S = S->next;
-    }
-    if (maxFilm < 0) {
-        cout << "[INFO] Tidak ada data sutradara.\n";
+    if (P->next == nullptr) {
+        cout << "Tidak ada sutradara setelah " << idPatokan << "!\n";
         return;
     }
-    S = L.first;
-    while (S != nullptr) {
-        int count = 0;
-        adrFilm F = S->firstFilm;
-        while (F != nullptr) {
-            count++;
-            F = F->next;
-        }
-        if (count == maxFilm)
-            cout << "ID: " << S->id << " | Nama: " << S->nama << " (" << maxFilm << " film)\n";
-        S = S->next;
-    }
+
+    deleteAfterSutradara(L, idPatokan);
+    cout << "Sutradara setelah " << idPatokan << " berhasil dihapus!\n";
 }
-
-
-
-
-
-
-
-
-
-
-

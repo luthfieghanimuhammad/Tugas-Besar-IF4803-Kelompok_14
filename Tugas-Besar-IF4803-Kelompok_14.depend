@@ -1,55 +1,51 @@
 # depslib dependency file v1.0
-1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
+1765100629 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400185.cpp
 	<iostream>
 	<string>
 	"Film.h"
 	"Sutradara.h"
 
-1765033440 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
+1765101685 d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara.h
 	<iostream>
 	<string>
 	"Film.h"
 
-1765034490 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
+1765101685 d:\tubes std\tugas-besar-if4803-kelompok_14\film.h
 	<iostream>
 	<string>
 	"Sutradara.h"
 
-1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
-	<iostream>
-	<string>
-	"Sutradara.h"
-	"Film.h"
-
-1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main.cpp
+1765100629 source:d:\tubes std\tugas-besar-if4803-kelompok_14\film_103012400211.cpp
 	<iostream>
 	<string>
 	"Sutradara.h"
 	"Film.h"
 
-1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_admin.cpp
+1765101752 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main.cpp
 	<iostream>
 	<string>
 	"Sutradara.h"
 	"Film.h"
 
-1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_user.cpp
-	<iostream>
-	<string>
-	"Sutradara.h"
-	"Film.h"
-	<iostream>
-	<string>
-	"Sutradara.h"
-	"Film.h"
-
-1765034409 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400185.cpp
+1765100629 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_admin.cpp
 	<iostream>
 	<string>
 	"Sutradara.h"
 	"Film.h"
 
-1765031486 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400211.cpp
+1765106915 source:d:\tubes std\tugas-besar-if4803-kelompok_14\main_user.cpp
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1765100879 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400185.cpp
+	<iostream>
+	<string>
+	"Sutradara.h"
+	"Film.h"
+
+1765101682 source:d:\tubes std\tugas-besar-if4803-kelompok_14\sutradara_103012400211.cpp
 	<iostream>
 	<string>
 	"Sutradara.h"

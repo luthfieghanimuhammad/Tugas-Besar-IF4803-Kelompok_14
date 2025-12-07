@@ -4,7 +4,7 @@
 #include "Sutradara.h"
 using namespace std;
 
-adrFilm buatFilmNode(string id, string judul, int tahun) {
+adrFilm buatFilmNode(string id, string judul, int tahun){
     adrFilm F = new Film;
     F->id = id;
     F->judul = judul;
@@ -13,26 +13,26 @@ adrFilm buatFilmNode(string id, string judul, int tahun) {
     return F;
 }
 
-void insertLastFilm(adrSutradara S, adrFilm F) {
-    if (S == nullptr) return;
-    if (S->firstFilm == nullptr) {
+void insertLastFilm(adrSutradara S, adrFilm F){
+    if(S == nullptr) return;
+    if(S->firstFilm == nullptr){
         S->firstFilm = F;
-    } else {
+    }else{
         adrFilm temp = S->firstFilm;
-        while (temp->next != nullptr) {
+        while (temp->next != nullptr){
             temp = temp->next;
         }
         temp->next = F;
     }
 }
 
-void adminInsertFirstFilm(ListSutradara &L) {
+void adminInsertFirstFilm(ListSutradara &L){
     string idS, idF, judul;
     int tahun;
     cout << "ID Sutradara: ";
     cin >> idS;
     adrSutradara S = findSutradara(L, idS);
-    if (S == nullptr) {
+    if(S == nullptr){
         cout << "Sutradara tidak ditemukan!\n";
         return;
     }
@@ -49,7 +49,7 @@ void adminInsertFirstFilm(ListSutradara &L) {
     cout << "Film berhasil ditambahkan!\n";
 }
 
-void adminInsertLastFilm(ListSutradara &L) {
+void adminInsertLastFilm(ListSutradara &L){
     string idS, idF, judul;
     int tahun;
     cout << "ID Sutradara: ";
@@ -71,20 +71,20 @@ void adminInsertLastFilm(ListSutradara &L) {
     cout << "Film berhasil ditambahkan!\n";
 }
 
-void adminInsertAfterFilm(ListSutradara &L) {
+void adminInsertAfterFilm(ListSutradara &L){
     string idS, idPatokan, idF, judul;
     int tahun;
     cout << "ID Sutradara: ";
     cin >> idS;
     adrSutradara S = findSutradara(L, idS);
-    if (S == nullptr) {
+    if (S == nullptr){
         cout << "Sutradara tidak ditemukan!\n";
         return;
     }
     cout << "ID Film Patokan: ";
     cin >> idPatokan;
     adrFilm Prec = findFilm(S, idPatokan);
-    if (Prec == nullptr) {
+    if(Prec == nullptr){
         cout << "Film patokan tidak ditemukan!\n";
         return;
     }

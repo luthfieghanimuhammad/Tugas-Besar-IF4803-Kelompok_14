@@ -4,11 +4,11 @@
 #include "Film.h"
 using namespace std;
 
-adrFilm findFilm(adrSutradara S, string idFilm) {
-    if (S == nullptr) return nullptr;
+adrFilm findFilm(adrSutradara S, string idFilm){
+    if(S == nullptr) return nullptr;
     adrFilm F = S->firstFilm;
-    while (F != nullptr) {
-        if (F->id == idFilm) {
+    while (F != nullptr){
+        if (F->id == idFilm){
             return F;
         }
         F = F->next;
@@ -16,16 +16,16 @@ adrFilm findFilm(adrSutradara S, string idFilm) {
     return nullptr;
 }
 
-void adminDeleteFirstFilm(ListSutradara &L) {
+void adminDeleteFirstFilm(ListSutradara &L){
     string idS;
     cout << "ID Sutradara: ";
     cin >> idS;
     adrSutradara S = findSutradara(L, idS);
-    if (S == nullptr) {
+    if(S == nullptr){
         cout << "Sutradara tidak ditemukan!\n";
         return;
     }
-    if (S->firstFilm == nullptr) {
+    if (S->firstFilm == nullptr){
         cout << "Tidak ada film untuk dihapus!\n";
         return;
     }
@@ -35,25 +35,25 @@ void adminDeleteFirstFilm(ListSutradara &L) {
     cout << "Film pertama berhasil dihapus!\n";
 }
 
-void adminDeleteLastFilm(ListSutradara &L) {
+void adminDeleteLastFilm(ListSutradara &L){
     string idS;
     cout << "ID Sutradara: ";
     cin >> idS;
     adrSutradara S = findSutradara(L, idS);
-    if (S == nullptr) {
+    if(S == nullptr){
         cout << "Sutradara tidak ditemukan!\n";
         return;
     }
-    if (S->firstFilm == nullptr) {
+    if(S->firstFilm == nullptr){
         cout << "Tidak ada film untuk dihapus!\n";
         return;
     }
-    if (S->firstFilm->next == nullptr) {
+    if(S->firstFilm->next == nullptr){
         delete S->firstFilm;
         S->firstFilm = nullptr;
-    } else {
+    }else{
         adrFilm temp = S->firstFilm;
-        while (temp->next->next != nullptr) {
+        while (temp->next->next != nullptr){
             temp = temp->next;
         }
         delete temp->next;
@@ -62,19 +62,19 @@ void adminDeleteLastFilm(ListSutradara &L) {
     cout << "Film terakhir berhasil dihapus!\n";
 }
 
-void adminDeleteAfterFilm(ListSutradara &L) {
+void adminDeleteAfterFilm(ListSutradara &L){
     string idS, idPatokan;
     cout << "ID Sutradara: ";
     cin >> idS;
     adrSutradara S = findSutradara(L, idS);
-    if (S == nullptr) {
+    if(S == nullptr){
         cout << "Sutradara tidak ditemukan!\n";
         return;
     }
     cout << "ID Film Patokan: ";
     cin >> idPatokan;
     adrFilm Prec = findFilm(S, idPatokan);
-    if (Prec == nullptr || Prec->next == nullptr) {
+    if(Prec == nullptr || Prec->next == nullptr){
         cout << "Film patokan tidak ditemukan atau tidak ada film setelahnya!\n";
         return;
     }
@@ -84,21 +84,35 @@ void adminDeleteAfterFilm(ListSutradara &L) {
     cout << "Film berhasil dihapus!\n";
 }
 
-void adminTampilSemuaFilm(ListSutradara L) {
-    adrSutradara S = L.first;
+void adminTampilSemuaFilm(ListSutradara L){
     cout << "\n===== DATA SEMUA FILM =====\n";
-    while (S != nullptr) {
+    if(L.first == nullptr){
+        cout << "Belum ada data sutradara dan film.\n";
+        cout << "===========================\n";
+        return;
+    }
+    adrSutradara S = L.first;
+    bool adaFilm = false;
+    while (S != nullptr){
         cout << "\nSutradara: " << S->nama << " (ID: " << S->id << ")\n";
         adrFilm F = S->firstFilm;
-        if (F == nullptr) {
+        if(F == nullptr){
             cout << "  Tidak ada film.\n";
-        } else {
-            while (F != nullptr) {
-                cout << "  - ID: " << F->id << " | Judul: " << F->judul
+        }else{
+            int nomor = 1;
+            while (F != nullptr){
+                cout << "  " << nomor << ". ID: " << F->id
+                     << " | Judul: " << F->judul
                      << " | Tahun: " << F->tahun << endl;
                 F = F->next;
+                nomor++;
+                adaFilm = true;
             }
         }
         S = S->next;
     }
+    if(!adaFilm){
+        cout << "\nBelum ada film yang terdaftar.\n";
+    }
+    cout << "===========================\n";
 }

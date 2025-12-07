@@ -11,7 +11,7 @@ typedef Film *adrFilm;
 struct Sutradara;
 typedef Sutradara *adrSutradara;
 
-struct Sutradara {
+struct Sutradara{
     string id;
     string nama;
     int umur;
@@ -20,7 +20,7 @@ struct Sutradara {
     adrSutradara prev;
 };
 
-struct ListSutradara {
+struct ListSutradara{
     adrSutradara first;
     adrSutradara last;
 };
@@ -47,5 +47,10 @@ void userCariSutradaraById(ListSutradara L);
 void userTampilFilmPerSutradara(ListSutradara L);
 void userSutradaraTerbanyakFilm(ListSutradara L);
 void loadDummyData(ListSutradara &L);
+void userTampilSemuaSutradara(ListSutradara L);
+void userMenyisipkanSutradara(ListSutradara &L);
+void userHapusSutradaraBerdasarkanKondisi(ListSutradara &L);
+void userHitungFilmBerdasarkanTahun(ListSutradara L);
+void userCariSutradaraBerumurDiatas(ListSutradara L);
 
 #endif

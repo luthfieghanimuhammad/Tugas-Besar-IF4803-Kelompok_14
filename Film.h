@@ -13,7 +13,7 @@ typedef Sutradara *adrSutradara;
 
 struct ListSutradara;
 
-struct Film {
+struct Film{
     string id;
     string judul;
     int tahun;
@@ -35,5 +35,8 @@ void adminInsertAfterFilm(ListSutradara &L);
 void adminDeleteFirstFilm(ListSutradara &L);
 void adminDeleteLastFilm(ListSutradara &L);
 void adminDeleteAfterFilm(ListSutradara &L);
+void userTampilSemuaFilm(ListSutradara L);
+void userMenyisipkanFilm(ListSutradara &L);
+void userHapusFilmBerdasarkanKondisi(ListSutradara &L);
 
 #endif

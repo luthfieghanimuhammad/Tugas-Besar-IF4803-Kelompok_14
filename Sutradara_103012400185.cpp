@@ -4,12 +4,12 @@
 #include "Film.h"
 using namespace std;
 
-void buatList(ListSutradara &L) {
+void buatList(ListSutradara &L){
     L.first = nullptr;
     L.last = nullptr;
 }
 
-adrSutradara buatSutradaraNode(string id, string nama, int umur) {
+adrSutradara buatSutradaraNode(string id, string nama, int umur){
     adrSutradara S = new Sutradara;
     S->id = id;
     S->nama = nama;
@@ -20,38 +20,40 @@ adrSutradara buatSutradaraNode(string id, string nama, int umur) {
     return S;
 }
 
-adrSutradara cariSutradaraById(ListSutradara L, string id) {
+adrSutradara cariSutradaraById(ListSutradara L, string id){
     adrSutradara P = L.first;
-    while (P != nullptr) {
-        if (P->id == id) return P;
+    while(P != nullptr){
+        if(P->id == id){
+            return P;
+        }
         P = P->next;
     }
     return nullptr;
 }
 
-void insertFirstSutradara(ListSutradara &L, adrSutradara S) {
-    if (L.first == nullptr) {
+void insertFirstSutradara(ListSutradara &L, adrSutradara S){
+    if(L.first == nullptr){
         L.first = S;
         L.last = S;
-    } else {
+    }else{
         S->next = L.first;
         L.first->prev = S;
         L.first = S;
     }
 }
 
-void insertLastSutradara(ListSutradara &L, adrSutradara S) {
-    if (L.first == nullptr) {
+void insertLastSutradara(ListSutradara &L, adrSutradara S){
+    if(L.first == nullptr){
         L.first = S;
         L.last = S;
-    } else {
+    }else{
         L.last->next = S;
         S->prev = L.last;
         L.last = S;
     }
 }
 
-void adminInsertFirstSutradara(ListSutradara &L) {
+void adminInsertFirstSutradara(ListSutradara &L){
     string id, nama;
     int umur;
     cout << "ID Sutradara: ";
@@ -66,7 +68,7 @@ void adminInsertFirstSutradara(ListSutradara &L) {
     cout << "Sutradara berhasil ditambahkan di awal!\n";
 }
 
-void adminInsertLastSutradara(ListSutradara &L) {
+void adminInsertLastSutradara(ListSutradara &L){
     string id, nama;
     int umur;
     cout << "ID Sutradara: ";
@@ -81,13 +83,13 @@ void adminInsertLastSutradara(ListSutradara &L) {
     cout << "Sutradara berhasil ditambahkan di akhir!\n";
 }
 
-void adminInsertAfterSutradara(ListSutradara &L) {
+void adminInsertAfterSutradara(ListSutradara &L){
     string idPatokan, id, nama;
     int umur;
     cout << "ID Sutradara Patokan: ";
     cin >> idPatokan;
     adrSutradara Prec = cariSutradaraById(L, idPatokan);
-    if (Prec == nullptr) {
+    if(Prec == nullptr){
         cout << "Sutradara patokan tidak ditemukan!\n";
         return;
     }

@@ -38,6 +38,10 @@ void adminInsertFirstFilm(ListSutradara &L){
     }
     cout << "ID Film: ";
     cin >> idF;
+    if(findFilm(S, idF) != nullptr){
+        cout << "Error: ID Film sudah digunakan untuk sutradara ini! Gunakan ID yang berbeda.\n";
+        return;
+    }
     cin.ignore();
     cout << "Judul Film: ";
     getline(cin, judul);
@@ -61,6 +65,10 @@ void adminInsertLastFilm(ListSutradara &L){
     }
     cout << "ID Film: ";
     cin >> idF;
+    if(findFilm(S, idF) != nullptr){
+        cout << "Error: ID Film sudah digunakan untuk sutradara ini! Gunakan ID yang berbeda.\n";
+        return;
+    }
     cin.ignore();
     cout << "Judul Film: ";
     getline(cin, judul);
@@ -90,6 +98,10 @@ void adminInsertAfterFilm(ListSutradara &L){
     }
     cout << "ID Film Baru: ";
     cin >> idF;
+    if(findFilm(S, idF) != nullptr){
+        cout << "Error: ID Film sudah digunakan untuk sutradara ini! Gunakan ID yang berbeda.\n";
+        return;
+    }
     cin.ignore();
     cout << "Judul Film: ";
     getline(cin, judul);

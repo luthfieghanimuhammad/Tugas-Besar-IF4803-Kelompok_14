@@ -6,7 +6,6 @@ using namespace std;
 
 void menuAdmin(ListSutradara &L) {
     int pilihan = 0;
-
     while(pilihan != 18){
         cout << "\n";
         cout << "+-------------------------------------------+\n";

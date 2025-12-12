@@ -28,7 +28,6 @@ int main(){
         cout << "\n+====================================+";
         cout << "\nPilih Menu: ";
         cin >> pilih;
-
         if(pilih == 1){
             system("cls");
             menuAdmin(adminList);

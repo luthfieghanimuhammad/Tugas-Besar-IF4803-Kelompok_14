@@ -125,53 +125,53 @@ void menuUser(ListSutradara &L){
         cout << "\n+-------------------------------------------+\n";
         cout << "|               MENU USER                   |\n";
         cout << "+-------------------------------------------+\n";
-        cout << "| 1. Tampilkan Semua Film Unik              |\n";
-        cout << "| 2. Hitung Total Film                      |\n";
-        cout << "| 3. Cari Sutradara Berdasarkan Nama        |\n";
-        cout << "| 4. Cari Sutradara Berdasarkan ID          |\n";
-        cout << "| 5. Tampilkan Film per Sutradara           |\n";
-        cout << "| 6. Sutradara dengan Film Terbanyak        |\n";
-        cout << "| 7. Tampilkan Semua Sutradara              |\n";
-        cout << "| 8. Tampilkan Semua Film                   |\n";
-        cout << "| 9. Sisipkan Sutradara Baru                |\n";
-        cout << "| 10: Hapus Sutradara dengan Umur Dibawah X |\n";
-        cout << "| 11. Sisipkan Film (Jumlah Film < 5)       |\n";
-        cout << "| 12: Hapus Film dengan Tahun Dibawah X     |\n";
-        cout << "| 13. Hitung Film Berdasarkan Tahun         |\n";
-        cout << "| 14. Cari Sutradara (Umur > X)             |\n";
+        cout << "| 1. Sisipkan Sutradara Baru                |\n";
+        cout << "| 2. Hapus Sutradara dengan Umur Dibawah X  |\n";
+        cout << "| 3. Sisipkan Film (Jumlah Film < 5)        |\n";
+        cout << "| 4. Hapus Film dengan Tahun Dibawah X      |\n";
+        cout << "| 5. Hitung Total Film                      |\n";
+        cout << "| 6. Hitung Film Berdasarkan Tahun          |\n";
+        cout << "| 7. Cari Sutradara Berdasarkan Nama        |\n";
+        cout << "| 8. Cari Sutradara Berdasarkan ID          |\n";
+        cout << "| 9. Cari Sutradara (Umur > X)              |\n";
+        cout << "| 10. Tampilkan Film per Sutradara          |\n";
+        cout << "| 11. Sutradara dengan Film Terbanyak       |\n";
+        cout << "| 12. Tampilkan Semua Sutradara             |\n";
+        cout << "| 13. Tampilkan Semua Film                  |\n";
+        cout << "| 14. Tampilkan Semua Film Unik             |\n";
         cout << "| 15. Kembali                               |\n";
         cout << "+-------------------------------------------+\n";
         cout << "Pilih Menu: ";
         cin >> pilih;
         cout << endl;
         if(pilih == 1){
-            userTampilSemuaFilmUnik(L);
-        }else if(pilih == 2){
-            userHitungTotalFilm(L);
-        }else if(pilih == 3){
-            userCariSutradaraByNama(L);
-        }else if(pilih == 4){
-            userCariSutradaraById(L);
-        }else if(pilih == 5){
-            userTampilFilmPerSutradara(L);
-        }else if(pilih == 6){
-            userSutradaraTerbanyakFilm(L);
-        }else if(pilih == 7){
-            userTampilSemuaSutradara(L);
-        }else if(pilih == 8){
-            userTampilSemuaFilm(L);
-        }else if(pilih == 9){
             userMenyisipkanSutradara(L);
-        }else if(pilih == 10){
+        }else if(pilih == 2){
             userHapusSutradaraBerdasarkanKondisi(L);
-        }else if(pilih == 11){
+        }else if(pilih == 3){
             userMenyisipkanFilm(L);
-        }else if(pilih == 12){
+        }else if(pilih == 4){
             userHapusFilmBerdasarkanKondisi(L);
-        }else if(pilih == 13){
+        }else if(pilih == 5){
+            userHitungTotalFilm(L);
+        }else if(pilih == 6){
             userHitungFilmBerdasarkanTahun(L);
-        }else if(pilih == 14){
+        }else if(pilih == 7){
+            userCariSutradaraByNama(L);
+        }else if(pilih == 8){
+            userCariSutradaraById(L);
+        }else if(pilih == 9){
             userCariSutradaraBerumurDiatas(L);
+        }else if(pilih == 10){
+            userTampilFilmPerSutradara(L);
+        }else if(pilih == 11){
+            userSutradaraTerbanyakFilm(L);
+        }else if(pilih == 12){
+            userTampilSemuaSutradara(L);
+        }else if(pilih == 13){
+            userTampilSemuaFilm(L);
+        }else if(pilih == 14){
+            userTampilSemuaFilmUnik(L);
         }
         if(pilih != 15){
             system("pause");
@@ -397,8 +397,25 @@ void userMenyisipkanSutradara(ListSutradara &L){
     cout << "\n|   MENYISIPKAN SUTRADARA (KONDISI)          |";
     cout << "\n+============================================+\n";
     cout << "Kondisi: Menyisipkan sutradara baru\n\n";
-    cout << "ID Sutradara Baru: ";
-    cin >> id;
+    bool idValid = false;
+    while(!idValid){
+        cout << "ID Sutradara Baru: ";
+        cin >> id;
+        adrSutradara cek = L.first;
+        bool idSudahAda = false;
+        while(cek != nullptr){
+            if(cek->id == id){
+                idSudahAda = true;
+                break;
+            }
+            cek = cek->next;
+        }
+        if(idSudahAda){
+            cout << "\n[GAGAL] ID " << id << " sudah digunakan! Silakan masukkan ID lain.\n\n";
+        }else{
+            idValid = true;
+        }
+    }
     cin.ignore();
     cout << "Nama Sutradara: ";
     getline(cin, nama);
@@ -428,7 +445,6 @@ void userMenyisipkanSutradara(ListSutradara &L){
             i = i->next;
         }
     }
-
     adrSutradara newS = buatSutradaraNode(id, nama, umur);
     if(L.first == nullptr){
         L.first = newS;
@@ -538,8 +554,25 @@ void userMenyisipkanFilm(ListSutradara &L){
                 F = F->next;
             }
             if(countFilm < 5){
-                cout << "ID Film Baru: ";
-                cin >> idF;
+                bool idFilmValid = false;
+                while(!idFilmValid){
+                    cout << "ID Film Baru: ";
+                    cin >> idF;
+                    adrFilm cekFilm = S->firstFilm;
+                    bool idFilmSudahAda = false;
+                    while(cekFilm != nullptr){
+                        if(cekFilm->id == idF){
+                            idFilmSudahAda = true;
+                            break;
+                        }
+                        cekFilm = cekFilm->next;
+                    }
+                    if(idFilmSudahAda){
+                        cout << "\n[GAGAL] ID Film " << idF << " sudah digunakan pada sutradara ini! Silakan masukkan ID lain.\n\n";
+                    }else{
+                        idFilmValid = true;
+                    }
+                }
                 cin.ignore();
                 cout << "Judul Film: ";
                 getline(cin, judul);

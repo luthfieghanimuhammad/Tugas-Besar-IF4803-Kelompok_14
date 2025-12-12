@@ -58,6 +58,10 @@ void adminInsertFirstSutradara(ListSutradara &L){
     int umur;
     cout << "ID Sutradara: ";
     cin >> id;
+    if(cariSutradaraById(L, id) != nullptr){
+        cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
+        return;
+    }
     cin.ignore();
     cout << "Nama Sutradara: ";
     getline(cin, nama);
@@ -73,6 +77,10 @@ void adminInsertLastSutradara(ListSutradara &L){
     int umur;
     cout << "ID Sutradara: ";
     cin >> id;
+    if(cariSutradaraById(L, id) != nullptr){
+        cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
+        return;
+    }
     cin.ignore();
     cout << "Nama Sutradara: ";
     getline(cin, nama);
@@ -95,6 +103,10 @@ void adminInsertAfterSutradara(ListSutradara &L){
     }
     cout << "ID Sutradara Baru: ";
     cin >> id;
+    if(cariSutradaraById(L, id) != nullptr){
+        cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
+        return;
+    }
     cin.ignore();
     cout << "Nama Sutradara: ";
     getline(cin, nama);

@@ -27,7 +27,7 @@ void insertLastFilm(adrSutradara S, adrFilm F){
 }
 
 void adminInsertFirstFilm(ListSutradara &L){
-    string idS, idF, judul;
+    string idS, idF, judul, tahunStr;
     int tahun;
     cout << "ID Sutradara: ";
     cin >> idS;
@@ -46,7 +46,19 @@ void adminInsertFirstFilm(ListSutradara &L){
     cout << "Judul Film: ";
     getline(cin, judul);
     cout << "Tahun: ";
-    cin >> tahun;
+    cin >> tahunStr;
+    bool valid = true;
+    for(int i = 0; i < tahunStr.length(); i++){
+        if(!isdigit(tahunStr[i])){
+            valid = false;
+            break;
+        }
+    }
+    if(!valid){
+        cout << "Error: Tahun harus berupa angka!\n";
+        return;
+    }
+    tahun = stoi(tahunStr);
     adrFilm F = buatFilmNode(idF, judul, tahun);
     F->next = S->firstFilm;
     S->firstFilm = F;
@@ -54,7 +66,7 @@ void adminInsertFirstFilm(ListSutradara &L){
 }
 
 void adminInsertLastFilm(ListSutradara &L){
-    string idS, idF, judul;
+    string idS, idF, judul, tahunStr;
     int tahun;
     cout << "ID Sutradara: ";
     cin >> idS;
@@ -65,6 +77,7 @@ void adminInsertLastFilm(ListSutradara &L){
     }
     cout << "ID Film: ";
     cin >> idF;
+
     if(findFilm(S, idF) != nullptr){
         cout << "Error: ID Film sudah digunakan untuk sutradara ini! Gunakan ID yang berbeda.\n";
         return;
@@ -73,14 +86,26 @@ void adminInsertLastFilm(ListSutradara &L){
     cout << "Judul Film: ";
     getline(cin, judul);
     cout << "Tahun: ";
-    cin >> tahun;
+    cin >> tahunStr;
+    bool valid = true;
+    for(int i = 0; i < tahunStr.length(); i++){
+        if(!isdigit(tahunStr[i])){
+            valid = false;
+            break;
+        }
+    }
+    if(!valid){
+        cout << "Error: Tahun harus berupa angka!\n";
+        return;
+    }
+    tahun = stoi(tahunStr);
     adrFilm F = buatFilmNode(idF, judul, tahun);
     insertLastFilm(S, F);
     cout << "Film berhasil ditambahkan!\n";
 }
 
 void adminInsertAfterFilm(ListSutradara &L){
-    string idS, idPatokan, idF, judul;
+    string idS, idPatokan, idF, judul, tahunStr;
     int tahun;
     cout << "ID Sutradara: ";
     cin >> idS;
@@ -98,6 +123,7 @@ void adminInsertAfterFilm(ListSutradara &L){
     }
     cout << "ID Film Baru: ";
     cin >> idF;
+
     if(findFilm(S, idF) != nullptr){
         cout << "Error: ID Film sudah digunakan untuk sutradara ini! Gunakan ID yang berbeda.\n";
         return;
@@ -106,7 +132,19 @@ void adminInsertAfterFilm(ListSutradara &L){
     cout << "Judul Film: ";
     getline(cin, judul);
     cout << "Tahun: ";
-    cin >> tahun;
+    cin >> tahunStr;
+    bool valid = true;
+    for(int i = 0; i < tahunStr.length(); i++){
+        if(!isdigit(tahunStr[i])){
+            valid = false;
+            break;
+        }
+    }
+    if(!valid){
+        cout << "Error: Tahun harus berupa angka!\n";
+        return;
+    }
+    tahun = stoi(tahunStr);
     adrFilm F = buatFilmNode(idF, judul, tahun);
     F->next = Prec->next;
     Prec->next = F;

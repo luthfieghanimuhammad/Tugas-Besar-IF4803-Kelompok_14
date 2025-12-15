@@ -391,7 +391,7 @@ void userTampilSemuaFilm(ListSutradara L){
 }
 
 void userMenyisipkanSutradara(ListSutradara &L){
-    string id, nama;
+    string id, nama, umurStr;
     int umur;
     cout << "\n+============================================+";
     cout << "\n|   MENYISIPKAN SUTRADARA (KONDISI)          |";
@@ -419,8 +419,28 @@ void userMenyisipkanSutradara(ListSutradara &L){
     cin.ignore();
     cout << "Nama Sutradara: ";
     getline(cin, nama);
+    if(nama.empty()){
+        cout << "Error: Nama Sutradara tidak boleh kosong!\n";
+        return;
+    }
     cout << "Umur: ";
-    cin >> umur;
+    cin >> umurStr;
+    bool valid = true;
+    for(int i = 0; i < umurStr.length(); i++){
+        if(!isdigit(umurStr[i])){
+            valid = false;
+            break;
+        }
+    }
+    if(!valid){
+        cout << "Error: Umur harus berupa angka!\n";
+        return;
+    }
+    umur = stoi(umurStr);
+    if(umur < 0 || umur > 150){
+        cout << "Error: Umur tidak valid! Harus antara 0-150.\n";
+        return;
+    }
     if(L.first != nullptr){
         adrSutradara i = L.first;
         while(i != nullptr){
@@ -660,12 +680,25 @@ void userHitungFilmBerdasarkanTahun(ListSutradara L){
 }
 
 void userCariSutradaraBerumurDiatas(ListSutradara L){
+    string umurMinStr;
     int umurMin;
     cout << "\n+============================================+";
     cout << "\n|   CARI SUTRADARA BERUMUR > X               |";
     cout << "\n+============================================+\n";
     cout << "Masukkan umur minimum: ";
-    cin >> umurMin;
+    cin >> umurMinStr;
+    bool valid = true;
+    for(int i = 0; i < umurMinStr.length(); i++){
+        if(!isdigit(umurMinStr[i])){
+            valid = false;
+            break;
+        }
+    }
+    if(!valid){
+        cout << "Error: Umur harus berupa angka!\n";
+        return;
+    }
+    umurMin = stoi(umurMinStr);
     adrSutradara S = L.first;
     int count = 0;
     cout << "\nSutradara dengan umur > " << umurMin << ":\n";

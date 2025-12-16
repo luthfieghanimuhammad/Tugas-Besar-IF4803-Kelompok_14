@@ -30,13 +30,21 @@ void menuAdmin(ListSutradara &L) {
         cout << "|              [TAMPIL & CARI]              |\n";
         cout << "| 13. Tampilkan Semua Sutradara             |\n";
         cout << "| 14. Tampilkan Semua Film                  |\n";
-        cout << "| 15. Cari Sutradara Berdasarkan ID/Nama    |\n";
+        cout << "| 15. Cari Sutradara Berdasarkan ID         |\n";
         cout << "| 16. Cari Film Berdasarkan ID              |\n";
         cout << "+-------------------------------------------+\n";
         cout << "| 18. Kembali                               |\n";
         cout << "+-------------------------------------------+\n";
         cout << "Pilih Menu: ";
         cin >> pilihan;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\n[!] Input harus berupa angka!\n";
+            system("pause");
+            pilihan = 0;
+            continue;
+        }
         cout << endl;
         if(pilihan == 1){
             adminInsertFirstSutradara(L);

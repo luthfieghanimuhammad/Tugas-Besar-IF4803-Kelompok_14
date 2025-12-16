@@ -143,7 +143,15 @@ void menuUser(ListSutradara &L){
         cout << "+-------------------------------------------+\n";
         cout << "Pilih Menu: ";
         cin >> pilih;
-        cout << endl;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\n[!] Input harus berupa angka!\n";
+            system("pause");
+            pilih = 0;
+            continue;
+        }
+       cout << endl;
         if(pilih == 1){
             userMenyisipkanSutradara(L);
         }else if(pilih == 2){
@@ -172,6 +180,13 @@ void menuUser(ListSutradara &L){
             userTampilSemuaFilm(L);
         }else if(pilih == 14){
             userTampilSemuaFilmUnik(L);
+        }else if(pilih == 15){
+            cout << "Kembali ke menu utama...\n";
+        }else{
+            cout << "\n[!] Pilihan tidak valid!\n";
+            system("pause");
+            pilih = 0;
+            continue;
         }
         if(pilih != 15){
             system("pause");

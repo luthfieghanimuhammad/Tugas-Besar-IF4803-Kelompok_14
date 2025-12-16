@@ -28,6 +28,14 @@ int main(){
         cout << "\n+====================================+";
         cout << "\nPilih Menu: ";
         cin >> pilih;
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            cout << "\n[!] Input harus berupa angka!\n";
+            system("pause");
+            pilih = 0;
+            continue;
+        }
         if(pilih == 1){
             system("cls");
             menuAdmin(adminList);

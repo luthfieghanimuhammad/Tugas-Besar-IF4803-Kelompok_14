@@ -195,20 +195,27 @@ void menuUser(ListSutradara &L){
 }
 
 void userTampilSemuaFilmUnik(ListSutradara L){
-    adrSutradara S = L.first;
-    cout << "\n+============================================+";
-    cout << "\n|         DAFTAR SEMUA FILM                  |";
-    cout << "\n+============================================+\n";
+    cout << "\n+=============================================+";
+    cout << "\n|           DAFTAR SEMUA FILM                 |";
+    cout << "\n+=============================================+\n";
+    if(L.first == nullptr){
+        cout << "| Belum ada data film.\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     string filmList[100];
     string sutradaraList[100];
     int jumlah[100] = {0};
     int count = 0;
     int no = 1;
-    S = L.first;
+    adrSutradara S = L.first;
     while(S != nullptr){
         adrFilm F = S->firstFilm;
         while(F != nullptr){
-            cout << no << ". " << F->judul << " (" << F->tahun << ") - Sutradara: " << S->nama << endl;
+            cout << "|\n";
+            cout << "| " << no << ". " << F->judul
+                 << " (" << F->tahun << ")\n";
+            cout << "|    Sutradara: " << S->nama << "\n";
             bool sudahAda = false;
             int index = -1;
             for(int i = 0; i < count && !sudahAda; i++){
@@ -229,23 +236,32 @@ void userTampilSemuaFilmUnik(ListSutradara L){
         }
         S = S->next;
     }
-    cout << "\n+============================================+";
-    cout << "\n|         FILM DUPLIKAT                      |";
-    cout << "\n+============================================+\n";
+    cout << "|\n";
+    cout << "+=============================================+";
+    cout << "\n|            FILM DUPLIKAT                    |";
+    cout << "\n+=============================================+\n";
+
     bool adaDuplikat = false;
     for(int i = 0; i < count; i++){
         if(jumlah[i] > 1){
-            cout << "- " << filmList[i] << " (muncul " << jumlah[i] << " kali)" << endl;
+            cout << "|\n";
+            cout << "| - " << filmList[i]
+                 << " (muncul " << jumlah[i] << " kali)\n";
             adaDuplikat = true;
         }
     }
     if(!adaDuplikat){
-        cout << "Tidak ada film duplikat.\n";
+        cout << "|\n";
+        cout << "| Tidak ada film duplikat.\n";
+        cout << "|\n";
     }
-    cout << "+============================================+\n";
+    cout << "+=============================================+\n";
 }
 
 void userHitungTotalFilm(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|           TOTAL FILM TERDAFTAR              |";
+    cout << "\n+=============================================+\n";
     int total = 0;
     adrSutradara S = L.first;
     while(S != nullptr){
@@ -256,78 +272,131 @@ void userHitungTotalFilm(ListSutradara L){
         }
         S = S->next;
     }
-    cout << "Total Film: " << total << endl;
+    cout << "|\n";
+    cout << "| Total Film: " << total << " film\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
 }
 
 void userCariSutradaraByNama(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|          CARI SUTRADARA BY NAMA             |";
+    cout << "\n+=============================================+\n";
     string nama;
     cin.ignore();
-    cout << "Masukkan Nama Sutradara: ";
+    cout << "| Masukkan Nama Sutradara: ";
     getline(cin, nama);
+    cout << "\n+=============================================+";
+    cout << "\n|              HASIL PENCARIAN                |";
+    cout << "\n+=============================================+\n";
     adrSutradara S = L.first;
     bool found = false;
     while(S != nullptr && !found){
         if(S->nama == nama){
-            cout << "ID : " << S->id << endl;
-            cout << "Umur : " << S->umur << endl;
+            cout << "|\n";
+            cout << "| Nama : " << S->nama << "\n";
+            cout << "| ID   : " << S->id << "\n";
+            cout << "| Umur : " << S->umur << " tahun\n";
+            cout << "|\n";
             found = true;
         }
         S = S->next;
     }
     if(!found){
-        cout << "Sutradara tidak ditemukan.\n";
+        cout << "|\n";
+        cout << "| Sutradara tidak ditemukan.\n";
+        cout << "|\n";
     }
+    cout << "+=============================================+\n";
 }
 
 void userCariSutradaraById(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|           CARI SUTRADARA BY ID              |";
+    cout << "\n+=============================================+\n";
     string id;
     cin.ignore();
-    cout << "Masukkan ID Sutradara: ";
+    cout << "| Masukkan ID Sutradara: ";
     getline(cin, id);
+    cout << "\n+=============================================+";
+    cout << "\n|              HASIL PENCARIAN                |";
+    cout << "\n+=============================================+\n";
     adrSutradara S = L.first;
     bool found = false;
     while(S != nullptr && !found){
         if(S->id == id){
-            cout << "Nama : " << S->nama << endl;
-            cout << "Umur : " << S->umur << endl;
+            cout << "|\n";
+            cout << "| ID   : " << S->id << "\n";
+            cout << "| Nama : " << S->nama << "\n";
+            cout << "| Umur : " << S->umur << " tahun\n";
+            cout << "|\n";
             found = true;
         }
         S = S->next;
     }
     if(!found){
-        cout << "Sutradara tidak ditemukan.\n";
+        cout << "|\n";
+        cout << "| Sutradara tidak ditemukan.\n";
+        cout << "|\n";
     }
+    cout << "+=============================================+\n";
 }
 
 void userTampilFilmPerSutradara(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|        FILM PER SUTRADARA                   |";
+    cout << "\n+=============================================+\n";
     string id;
     cin.ignore();
-    cout << "Masukkan ID Sutradara: ";
+    cout << "| Masukkan ID Sutradara: ";
     getline(cin, id);
+    cout << "\n+=============================================+";
+    cout << "\n|           DAFTAR FILM                       |";
+    cout << "\n+=============================================+\n";
     adrSutradara S = L.first;
     bool found = false;
     while(S != nullptr && !found){
         if(S->id == id){
-            cout << "Sutradara: " << S->nama << endl;
+            cout << "|\n";
+            cout << "| Sutradara: " << S->nama << "\n";
+            cout << "|\n";
             adrFilm F = S->firstFilm;
-            while(F != nullptr){
-                cout << "- " << F->judul << " (" << F->tahun << ")\n";
-                F = F->next;
+            if(F == nullptr){
+                cout << "| Tidak ada film.\n";
+            } else {
+                int no = 1;
+                while(F != nullptr){
+                    cout << "| " << no << ". " << F->judul
+                         << " (" << F->tahun << ")\n";
+                    F = F->next;
+                    no++;
+                }
             }
+            cout << "|\n";
             found = true;
         }
         S = S->next;
     }
     if(!found){
-        cout << "Sutradara tidak ditemukan.\n";
+        cout << "|\n";
+        cout << "| Sutradara tidak ditemukan.\n";
+        cout << "|\n";
     }
+    cout << "+=============================================+\n";
 }
 
 void userSutradaraTerbanyakFilm(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|        JUMLAH FILM PER SUTRADARA            |";
+    cout << "\n+=============================================+\n";
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Belum ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
-    cout << "\n+============================================+";
-    cout << "\n|    JUMLAH FILM PER SUTRADARA               |";
-    cout << "\n+============================================+\n";
     int maxFilm = 0;
     while(S != nullptr){
         int count = 0;
@@ -336,16 +405,17 @@ void userSutradaraTerbanyakFilm(ListSutradara L){
             count++;
             F = F->next;
         }
-        cout << "- " << S->nama << " : " << count << " film" << endl;
-
+        cout << "|\n";
+        cout << "| " << S->nama << " : " << count << " film\n";
         if(count > maxFilm){
             maxFilm = count;
         }
         S = S->next;
     }
-    cout << "\n+============================================+";
-    cout << "\n|    SUTRADARA DENGAN FILM TERBANYAK        |";
-    cout << "\n+============================================+\n";
+    cout << "|\n";
+    cout << "+=============================================+";
+    cout << "\n|      SUTRADARA DENGAN FILM TERBANYAK       |";
+    cout << "\n+=============================================+\n";
     S = L.first;
     while(S != nullptr){
         int count = 0;
@@ -355,66 +425,96 @@ void userSutradaraTerbanyakFilm(ListSutradara L){
             F = F->next;
         }
         if(count == maxFilm){
-            cout << "Nama        : " << S->nama << endl;
-            cout << "ID          : " << S->id << endl;
-            cout << "Jumlah Film : " << count << " film" << endl;
-            cout << endl;
+            cout << "|\n";
+            cout << "| Nama        : " << S->nama << "\n";
+            cout << "| ID          : " << S->id << "\n";
+            cout << "| Jumlah Film : " << count << " film\n";
+            cout << "|\n";
         }
         S = S->next;
     }
-    cout << "+============================================+\n";
+    cout << "+=============================================+\n";
 }
 
 void userTampilSemuaSutradara(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|         DAFTAR SEMUA SUTRADARA              |";
+    cout << "\n+=============================================+\n";
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Tidak ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
-    cout << "\n+============================================+";
-    cout << "\n|         DAFTAR SEMUA SUTRADARA             |";
-    cout << "\n+============================================+\n";
     int no = 1;
     while(S != nullptr){
-        cout << no << ". ID: " << S->id << " | Nama: " << S->nama << " | Umur: " << S->umur << endl;
+        cout << "|\n";
+        cout << "| " << no << ". ID   : " << S->id << "\n";
+        cout << "|    Nama : " << S->nama << "\n";
+        cout << "|    Umur : " << S->umur << " tahun\n";
         S = S->next;
         no++;
     }
-    if(no == 1){
-        cout << "Tidak ada data sutradara.\n";
-    }
-    cout << "+============================================+\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
 }
 
 void userTampilSemuaFilm(ListSutradara L){
+    cout << "\n+=============================================+";
+    cout << "\n|           DAFTAR SEMUA FILM                 |";
+    cout << "\n+=============================================+\n";
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Belum ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
-    cout << "\n+============================================+";
-    cout << "\n|         DAFTAR SEMUA FILM                  |";
-    cout << "\n+============================================+\n";
     while(S != nullptr){
-        cout << "\nSutradara: " << S->nama << " (ID: " << S->id << ")" << endl;
+        cout << "|\n";
+        cout << "| Sutradara : " << S->nama << "\n";
+        cout << "| ID        : " << S->id << "\n";
+        cout << "|\n";
         adrFilm F = S->firstFilm;
         if(F == nullptr){
-            cout << "  Tidak ada film.\n";
+            cout << "| Tidak ada film.\n";
         }else{
             int no = 1;
             while(F != nullptr){
-                cout << "  " << no << ". " << F->judul << " (" << F->tahun << ") [" << F->id << "]" << endl;
+                cout << "| " << no << ". Judul : " << F->judul << "\n";
+                cout << "|    Tahun : " << F->tahun << "\n";
+                cout << "|    ID    : " << F->id << "\n";
+                if(F->next != nullptr){
+                    cout << "|\n";
+                }
                 F = F->next;
                 no++;
             }
         }
         S = S->next;
     }
-    cout << "\n+============================================+\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
 }
 
 void userMenyisipkanSutradara(ListSutradara &L){
     string id, nama, umurStr;
     int umur;
-    cout << "\n+============================================+";
-    cout << "\n|   MENYISIPKAN SUTRADARA (KONDISI)          |";
-    cout << "\n+============================================+\n";
-    cout << "Kondisi: Menyisipkan sutradara baru\n\n";
+    cout << "\n+=============================================+";
+    cout << "\n|     MENYISIPKAN SUTRADARA (KONDISI)         |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| Kondisi: Menyisipkan sutradara baru\n";
+    cout << "|          berdasarkan urutan umur \n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
     bool idValid = false;
     while(!idValid){
-        cout << "ID Sutradara Baru: ";
+        cout << "|\n";
+        cout << "| ID Sutradara Baru: ";
         cin >> id;
         adrSutradara cek = L.first;
         bool idSudahAda = false;
@@ -426,19 +526,24 @@ void userMenyisipkanSutradara(ListSutradara &L){
             cek = cek->next;
         }
         if(idSudahAda){
-            cout << "\n[GAGAL] ID " << id << " sudah digunakan! Silakan masukkan ID lain.\n\n";
+            cout << "|\n";
+            cout << "| [GAGAL] ID " << id << " sudah digunakan!\n";
+            cout << "| Silakan masukkan ID lain.\n";
         }else{
             idValid = true;
         }
     }
     cin.ignore();
-    cout << "Nama Sutradara: ";
+    cout << "| Nama Sutradara    : ";
     getline(cin, nama);
     if(nama.empty()){
-        cout << "Error: Nama Sutradara tidak boleh kosong!\n";
+        cout << "|\n";
+        cout << "| [!] Error: Nama tidak boleh kosong!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
-    cout << "Umur: ";
+    cout << "| Umur              : ";
     cin >> umurStr;
     bool valid = true;
     for(int i = 0; i < umurStr.length(); i++){
@@ -448,12 +553,19 @@ void userMenyisipkanSutradara(ListSutradara &L){
         }
     }
     if(!valid){
-        cout << "Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     umur = stoi(umurStr);
     if(umur < 0 || umur > 150){
-        cout << "Error: Umur tidak valid! Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur tidak valid!\n";
+        cout << "| Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     if(L.first != nullptr){
@@ -484,14 +596,22 @@ void userMenyisipkanSutradara(ListSutradara &L){
     if(L.first == nullptr){
         L.first = newS;
         L.last = newS;
-        cout << "\n[BERHASIL] Sutradara " << nama << " disisipkan\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        cout << "| [BERHASIL] Sutradara " << nama << "\n";
+        cout << "|            berhasil disisipkan!\n";
+        cout << "+=============================================+\n";
         return;
     }
     if(umur > L.first->umur){
         newS->next = L.first;
         L.first->prev = newS;
         L.first = newS;
-        cout << "\n[BERHASIL] Sutradara " << nama << " disisipkan\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        cout << "| [BERHASIL] Sutradara " << nama << "\n";
+        cout << "|            berhasil disisipkan di awal!\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara S = L.first;
@@ -506,22 +626,46 @@ void userMenyisipkanSutradara(ListSutradara &L){
         L.last = newS;
     }
     S->next = newS;
-    cout << "\n[BERHASIL] Sutradara " << nama << " disisipkan\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "| [BERHASIL] Sutradara " << nama << "\n";
+    cout << "|            berhasil disisipkan!\n";
+    cout << "+=============================================+\n";
 }
 
 void userHapusSutradaraBerdasarkanKondisi(ListSutradara &L){
     int umurMax;
-    cout << "\n+============================================+";
-    cout << "\n|   HAPUS SUTRADARA (KONDISI)                |";
-    cout << "\n+============================================+\n";
-    cout << "Masukkan umur maksimum (hapus sutradara dengan umur < umur ini): ";
+    cout << "\n+=============================================+";
+    cout << "\n|       HAPUS SUTRADARA (KONDISI)             |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| Kondisi: Hapus sutradara dengan umur < X\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "|\n";
+    cout << "| Masukkan umur maksimum: ";
     cin >> umurMax;
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Belum ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
     int count = 0;
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "| Sutradara yang dihapus (umur < " << umurMax << "):\n";
+    cout << "+=============================================+\n";
     while(S != nullptr){
         adrSutradara temp = S;
         S = S->next;
         if(temp->umur < umurMax){
+            cout << "|\n";
+            cout << "| " << (count + 1) << ". Nama : " << temp->nama << "\n";
+            cout << "|    Umur : " << temp->umur << " tahun\n";
+
             if(temp == L.first && temp == L.last){
                 L.first = nullptr;
                 L.last = nullptr;
@@ -535,15 +679,18 @@ void userHapusSutradaraBerdasarkanKondisi(ListSutradara &L){
                 temp->prev->next = temp->next;
                 temp->next->prev = temp->prev;
             }
-            cout << "Sutradara " << temp->nama << " (Umur: " << temp->umur << ") dihapus.\n";
             delete temp;
             count++;
         }
     }
+    cout << "|\n";
+    cout << "+=============================================+\n";
     if(count == 0){
-        cout << "Tidak ada sutradara yang memenuhi kondisi.\n";
+        cout << "| Tidak ada sutradara yang memenuhi kondisi.\n";
+        cout << "+=============================================+\n";
     }else{
-        cout << "\nTotal " << count << " sutradara dihapus.\n";
+        cout << "| [BERHASIL] Total " << count << " sutradara dihapus.\n";
+        cout << "+=============================================+\n";
     }
 }
 
@@ -576,75 +723,105 @@ void userMenyisipkanFilm(ListSutradara &L){
         cout << "\nSemua sutradara sudah memiliki >= 5 film. Film tidak disisipkan.\n";
         return;
     }
-    cout << "\nMasukkan ID Sutradara: ";
-    cin >> idS;
-    S = L.first;
-    bool found = false;
-    while(S != nullptr && !found){
-        if(S->id == idS){
-            int countFilm = 0;
-            adrFilm F = S->firstFilm;
-            while(F != nullptr){
-                countFilm++;
-                F = F->next;
-            }
-            if(countFilm < 5){
-                bool idFilmValid = false;
-                while(!idFilmValid){
-                    cout << "ID Film Baru: ";
-                    cin >> idF;
-                    adrFilm cekFilm = S->firstFilm;
-                    bool idFilmSudahAda = false;
-                    while(cekFilm != nullptr){
-                        if(cekFilm->id == idF){
-                            idFilmSudahAda = true;
-                            break;
-                        }
-                        cekFilm = cekFilm->next;
-                    }
-                    if(idFilmSudahAda){
-                        cout << "\n[GAGAL] ID Film " << idF << " sudah digunakan pada sutradara ini! Silakan masukkan ID lain.\n\n";
-                    }else{
-                        idFilmValid = true;
-                    }
+    bool idSutradaraValid = false;
+    while(!idSutradaraValid){
+        cout << "\nMasukkan ID Sutradara: ";
+        cin >> idS;
+        S = L.first;
+        bool found = false;
+
+        while(S != nullptr && !found){
+            if(S->id == idS){
+                int countFilm = 0;
+                adrFilm F = S->firstFilm;
+                while(F != nullptr){
+                    countFilm++;
+                    F = F->next;
                 }
-                cin.ignore();
-                cout << "Judul Film: ";
-                getline(cin, judul);
-                cout << "Tahun: ";
-                cin >> tahun;
-                adrFilm newF = buatFilmNode(idF, judul, tahun);
-                insertLastFilm(S, newF);
-                cout << "\n[BERHASIL] Film " << judul << " berhasil disisipkan ke sutradara " << S->nama << " (Jumlah film sebelumnya: " << countFilm << ")\n";
-                found = true;
+                if(countFilm < 5){
+                    bool idFilmValid = false;
+                    while(!idFilmValid){
+                        cout << "ID Film Baru: ";
+                        cin >> idF;
+                        adrSutradara tempS = L.first;
+                        bool idFilmSudahAda = false;
+                        while(tempS != nullptr){
+                            adrFilm cekFilm = tempS->firstFilm;
+                            while(cekFilm != nullptr){
+                                if(cekFilm->id == idF){
+                                    idFilmSudahAda = true;
+                                    break;
+                                }
+                                cekFilm = cekFilm->next;
+                            }
+                            if(idFilmSudahAda) break;
+                            tempS = tempS->next;
+                        }
+
+                        if(idFilmSudahAda){
+                            cout << "\n[GAGAL] ID Film " << idF << " sudah digunakan di sistem! Silakan masukkan ID lain.\n\n";
+                        }else{
+                            idFilmValid = true;
+                        }
+                    }
+                    cin.ignore();
+                    cout << "Judul Film: ";
+                    getline(cin, judul);
+                    cout << "Tahun: ";
+                    cin >> tahun;
+                    adrFilm newF = buatFilmNode(idF, judul, tahun);
+                    insertLastFilm(S, newF);
+                    cout << "\n[BERHASIL] Film " << judul << " berhasil disisipkan ke sutradara " << S->nama << " (Jumlah film sebelumnya: " << countFilm << ")\n";
+                    found = true;
+                    idSutradaraValid = true;
+                }else{
+                    cout << "\n[GAGAL] Sutradara " << S->nama << " sudah memiliki >= 5 film.\n";
+                    found = true;
+                }
             }else{
-                cout << "\n[GAGAL] Sutradara " << S->nama << " sudah memiliki >= 5 film.\n";
-                found = true;
+                S = S->next;
             }
-        }else{
-            S = S->next;
         }
-    }
-    if(!found){
-        cout << "\n[GAGAL] Sutradara dengan ID " << idS << " tidak ditemukan.\n";
+        if(!found){
+            cout << "\n[GAGAL] Sutradara dengan ID " << idS << " tidak ditemukan.\n";
+        }else{
+            idSutradaraValid = true;
+        }
     }
 }
 
 void userHapusFilmBerdasarkanKondisi(ListSutradara &L){
     int tahunMin;
-    cout << "\n+============================================+";
-    cout << "\n|   HAPUS FILM (KONDISI)                     |";
-    cout << "\n+============================================+\n";
-    cout << "Masukkan tahun minimum (hapus film dengan tahun < tahun ini): ";
+    cout << "\n+=============================================+";
+    cout << "\n|         HAPUS FILM (KONDISI)                |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| Kondisi: Hapus film dengan tahun < X\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "|\n";
+    cout << "| Masukkan tahun minimum: ";
     cin >> tahunMin;
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Belum ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
     int count = 0;
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "| Film yang dihapus (tahun < " << tahunMin << "):\n";
+    cout << "+=============================================+\n";
     while(S != nullptr){
         adrFilm F = S->firstFilm;
         adrFilm prev = nullptr;
         while(F != nullptr){
             if(F->tahun < tahunMin){
                 adrFilm temp = F;
+
                 if(prev == nullptr){
                     S->firstFilm = F->next;
                     F = S->firstFilm;
@@ -652,7 +829,11 @@ void userHapusFilmBerdasarkanKondisi(ListSutradara &L){
                     prev->next = F->next;
                     F = F->next;
                 }
-                cout << "Film " << temp->judul << " (" << temp->tahun << ") dari sutradara " << S->nama << " dihapus.\n";
+                cout << "|\n";
+                cout << "| " << (count + 1) << ". Judul     : " << temp->judul << "\n";
+                cout << "|    Tahun     : " << temp->tahun << "\n";
+                cout << "|    Sutradara : " << S->nama << "\n";
+
                 delete temp;
                 count++;
             }else{
@@ -662,54 +843,83 @@ void userHapusFilmBerdasarkanKondisi(ListSutradara &L){
         }
         S = S->next;
     }
+    cout << "|\n";
+    cout << "+=============================================+\n";
+
     if(count == 0){
-        cout << "Tidak ada film yang memenuhi kondisi.\n";
+        cout << "| Tidak ada film yang memenuhi kondisi.\n";
+        cout << "+=============================================+\n";
     }else{
-        cout << "\nTotal " << count << " film dihapus.\n";
+        cout << "| [BERHASIL] Total " << count << " film dihapus.\n";
+        cout << "+=============================================+\n";
     }
 }
 
 void userHitungFilmBerdasarkanTahun(ListSutradara L){
     int tahunCari;
-    cout << "\n+============================================+";
-    cout << "\n|   HITUNG FILM BERDASARKAN TAHUN            |";
-    cout << "\n+============================================+\n";
-    cout << "Masukkan tahun: ";
+    cout << "\n+=============================================+";
+    cout << "\n|     HITUNG FILM BERDASARKAN TAHUN           |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| Masukkan tahun: ";
     cin >> tahunCari;
+
     if(cin.fail()){
         cin.clear();
-        cout << "\n[!] Input tidak valid! Harap masukkan angka tahun.\n";
-        cout << "+============================================+\n";
+        cin.ignore(10000, '\n');
+        cout << "|\n";
+        cout << "| [!] Input tidak valid!\n";
+        cout << "| Harap masukkan angka tahun.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
+
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Belum ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara S = L.first;
     int count = 0;
-    cout << "\nFilm yang dirilis pada tahun " << tahunCari << ":\n";
+    cout << "|\n";
+    cout << "+=============================================+";
+    cout << "\n| Film yang dirilis pada tahun " << tahunCari << "\n";
+    cout << "+=============================================+\n";
     while(S != nullptr){
         adrFilm F = S->firstFilm;
         while(F != nullptr){
             if(F->tahun == tahunCari){
-                cout << "- " << F->judul << " (Sutradara: " << S->nama << ")\n";
+                cout << "|\n";
+                cout << "| " << (count + 1) << ". Judul     : " << F->judul << "\n";
+                cout << "|    Sutradara : " << S->nama << "\n";
                 count++;
             }
             F = F->next;
         }
         S = S->next;
     }
+    cout << "|\n";
+    cout << "+=============================================+\n";
     if(count == 0){
-        cout << "Tidak ada film yang ditemukan pada tahun " << tahunCari << "\n";
+        cout << "| Tidak ada film yang ditemukan pada tahun " << tahunCari << "\n";
+        cout << "+=============================================+\n";
     } else {
-        cout << "\nTotal film pada tahun " << tahunCari << ": " << count << " film\n";
+        cout << "| Total: " << count << " film pada tahun " << tahunCari << "\n";
+        cout << "+=============================================+\n";
     }
-    cout << "+============================================+\n";
 }
+
 void userCariSutradaraBerumurDiatas(ListSutradara L){
     string umurMinStr;
     int umurMin;
-    cout << "\n+============================================+";
-    cout << "\n|   CARI SUTRADARA BERUMUR > X               |";
-    cout << "\n+============================================+\n";
-    cout << "Masukkan umur minimum: ";
+    cout << "\n+=============================================+";
+    cout << "\n|     CARI SUTRADARA BERUMUR > X              |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| Masukkan umur minimum: ";
     cin >> umurMinStr;
     bool valid = true;
     for(int i = 0; i < umurMinStr.length(); i++){
@@ -719,26 +929,45 @@ void userCariSutradaraBerumurDiatas(ListSutradara L){
         }
     }
     if(!valid){
-        cout << "Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     umurMin = stoi(umurMinStr);
+    if(L.first == nullptr){
+        cout << "|\n";
+        cout << "| Belum ada data sutradara.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
     int count = 0;
-    cout << "\nSutradara dengan umur > " << umurMin << ":\n";
+    cout << "|\n";
+    cout << "+=============================================+";
+    cout << "\n| Sutradara dengan umur > " << umurMin << " tahun\n";
+    cout << "+=============================================+\n";
     while(S != nullptr){
         if(S->umur > umurMin){
-            cout << "- " << S->nama << " (ID: " << S->id << ", Umur: " << S->umur << ")\n";
+            cout << "|\n";
+            cout << "| " << (count + 1) << ". Nama : " << S->nama << "\n";
+            cout << "|    ID   : " << S->id << "\n";
+            cout << "|    Umur : " << S->umur << " tahun\n";
             count++;
         }
         S = S->next;
     }
+    cout << "|\n";
+    cout << "+=============================================+\n";
     if(count == 0){
-        cout << "Tidak ada sutradara yang memenuhi kriteria.\n";
-    }else{
-        cout << "\nTotal: " << count << " sutradara\n";
+        cout << "| Tidak ada sutradara yang memenuhi kriteria.\n";
+        cout << "+=============================================+\n";
+    } else {
+        cout << "| Total: " << count << " sutradara\n";
+        cout << "+=============================================+\n";
     }
-    cout << "+============================================+\n";
 }
 
 void loadDummyData(ListSutradara &L){

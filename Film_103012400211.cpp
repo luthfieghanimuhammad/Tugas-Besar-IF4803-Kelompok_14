@@ -85,34 +85,37 @@ void adminDeleteAfterFilm(ListSutradara &L){
 }
 
 void adminTampilSemuaFilm(ListSutradara L){
-    cout << "\n===== DATA SEMUA FILM =====\n";
+    cout << "\n+=============================================+";
+    cout << "\n|             DATA SEMUA FILM                 |";
+    cout << "\n+=============================================+\n";
     if(L.first == nullptr){
-        cout << "Belum ada data sutradara dan film.\n";
-        cout << "===========================\n";
+        cout << "| Belum ada data sutradara dan film.          |\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara S = L.first;
     bool adaFilm = false;
-    while (S != nullptr){
-        cout << "\nSutradara: " << S->nama << " (ID: " << S->id << ")\n";
+    while(S != nullptr){
+        cout << "\n+---------------------------------------------+\n";
+        cout << "| Sutradara: " << S->nama << " (ID: " << S->id << ")\n";
         adrFilm F = S->firstFilm;
         if(F == nullptr){
-            cout << "  Tidak ada film.\n";
-        }else{
+            cout << "|   Tidak ada film.\n";
+        } else {
             int nomor = 1;
-            while (F != nullptr){
-                cout << "  " << nomor << ". ID: " << F->id
-                     << " | Judul: " << F->judul
-                     << " | Tahun: " << F->tahun << endl;
+            while(F != nullptr){
+                cout << "|   " << nomor << ". " << F->judul
+                     << " (" << F->tahun << ") - ID: " << F->id << "\n";
                 F = F->next;
                 nomor++;
                 adaFilm = true;
             }
         }
+        cout << "+---------------------------------------------+\n";
         S = S->next;
     }
     if(!adaFilm){
-        cout << "\nBelum ada film yang terdaftar.\n";
+        cout << "\n| Belum ada film yang terdaftar.              |\n";
+        cout << "+=============================================+\n";
     }
-    cout << "===========================\n";
 }

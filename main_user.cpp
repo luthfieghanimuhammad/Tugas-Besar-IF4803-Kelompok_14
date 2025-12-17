@@ -676,6 +676,12 @@ void userHitungFilmBerdasarkanTahun(ListSutradara L){
     cout << "\n+============================================+\n";
     cout << "Masukkan tahun: ";
     cin >> tahunCari;
+    if(cin.fail()){
+        cin.clear();
+        cout << "\n[!] Input tidak valid! Harap masukkan angka tahun.\n";
+        cout << "+============================================+\n";
+        return;
+    }
     adrSutradara S = L.first;
     int count = 0;
     cout << "\nFilm yang dirilis pada tahun " << tahunCari << ":\n";
@@ -690,10 +696,13 @@ void userHitungFilmBerdasarkanTahun(ListSutradara L){
         }
         S = S->next;
     }
-    cout << "\nTotal film pada tahun " << tahunCari << ": " << count << " film\n";
+    if(count == 0){
+        cout << "Tidak ada film yang ditemukan pada tahun " << tahunCari << "\n";
+    } else {
+        cout << "\nTotal film pada tahun " << tahunCari << ": " << count << " film\n";
+    }
     cout << "+============================================+\n";
 }
-
 void userCariSutradaraBerumurDiatas(ListSutradara L){
     string umurMinStr;
     int umurMin;

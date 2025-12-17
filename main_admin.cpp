@@ -90,7 +90,7 @@ void menuAdmin(ListSutradara &L) {
         }
         else if (pilihan == 15){
             string cari;
-            cout << "Masukkan ID atau Nama Sutradara: ";
+            cout << "Masukkan ID Sutradara: ";
             cin >> cari;
             adrSutradara hasil = findSutradara(L, cari);
             if (hasil != nullptr) {

@@ -56,16 +56,24 @@ void insertLastSutradara(ListSutradara &L, adrSutradara S){
 void adminInsertFirstSutradara(ListSutradara &L){
     string id, nama, umurStr;
     int umur;
-    cout << "ID Sutradara: ";
+    cout << "\n+=============================================+";
+    cout << "\n|    INSERT FIRST SUTRADARA (ADMIN)           |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| ID Sutradara: ";
     cin >> id;
     if(cariSutradaraById(L, id) != nullptr){
-        cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
+        cout << "|\n";
+        cout << "| [!] Error: ID Sutradara sudah digunakan!\n";
+        cout << "| Gunakan ID yang berbeda.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     cin.ignore();
-    cout << "Nama Sutradara: ";
+    cout << "| Nama Sutradara: ";
     getline(cin, nama);
-    cout << "Umur: ";
+    cout << "| Umur: ";
     cin >> umurStr;
     bool valid = true;
     for(int i = 0; i < umurStr.length(); i++){
@@ -75,32 +83,51 @@ void adminInsertFirstSutradara(ListSutradara &L){
         }
     }
     if(!valid){
-        cout << "Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     umur = stoi(umurStr);
     if(umur < 0 || umur > 150){
-        cout << "Error: Umur tidak valid! Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur tidak valid!\n";
+        cout << "| Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara S = buatSutradaraNode(id, nama, umur);
     insertFirstSutradara(L, S);
-    cout << "Sutradara berhasil ditambahkan di awal!\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "| [BERHASIL] Sutradara berhasil ditambahkan\n";
+    cout << "|            di awal!\n";
+    cout << "+=============================================+\n";
 }
 
 void adminInsertLastSutradara(ListSutradara &L){
     string id, nama, umurStr;
     int umur;
-    cout << "ID Sutradara: ";
+    cout << "\n+=============================================+";
+    cout << "\n|     INSERT LAST SUTRADARA (ADMIN)           |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| ID Sutradara: ";
     cin >> id;
     if(cariSutradaraById(L, id) != nullptr){
-        cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
+        cout << "|\n";
+        cout << "| [!] Error: ID Sutradara sudah digunakan!\n";
+        cout << "| Gunakan ID yang berbeda.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     cin.ignore();
-    cout << "Nama Sutradara: ";
+    cout << "| Nama Sutradara: ";
     getline(cin, nama);
-    cout << "Umur: ";
+    cout << "| Umur: ";
     cin >> umurStr;
     bool valid = true;
     for(int i = 0; i < umurStr.length(); i++){
@@ -110,39 +137,62 @@ void adminInsertLastSutradara(ListSutradara &L){
         }
     }
     if(!valid){
-        cout << "Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     umur = stoi(umurStr);
     if(umur < 0 || umur > 150){
-        cout << "Error: Umur tidak valid! Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur tidak valid!\n";
+        cout << "| Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara S = buatSutradaraNode(id, nama, umur);
     insertLastSutradara(L, S);
-    cout << "Sutradara berhasil ditambahkan di akhir!\n";
+
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "| [BERHASIL] Sutradara berhasil ditambahkan\n";
+    cout << "|            di akhir!\n";
+    cout << "+=============================================+\n";
 }
 
 void adminInsertAfterSutradara(ListSutradara &L){
     string idPatokan, id, nama, umurStr;
     int umur;
-    cout << "ID Sutradara Patokan: ";
+    cout << "\n+=============================================+";
+    cout << "\n|    INSERT AFTER SUTRADARA (ADMIN)           |";
+    cout << "\n+=============================================+\n";
+    cout << "|\n";
+    cout << "| ID Sutradara Patokan: ";
     cin >> idPatokan;
     adrSutradara Prec = cariSutradaraById(L, idPatokan);
     if(Prec == nullptr){
-        cout << "Sutradara patokan tidak ditemukan!\n";
+        cout << "|\n";
+        cout << "| [!] Sutradara patokan tidak ditemukan!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
-    cout << "ID Sutradara Baru: ";
+    cout << "| ID Sutradara Baru: ";
     cin >> id;
     if(cariSutradaraById(L, id) != nullptr){
-        cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
+        cout << "|\n";
+        cout << "| [!] Error: ID Sutradara sudah digunakan!\n";
+        cout << "| Gunakan ID yang berbeda.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     cin.ignore();
-    cout << "Nama Sutradara: ";
+    cout << "| Nama Sutradara: ";
     getline(cin, nama);
-    cout << "Umur: ";
+    cout << "| Umur: ";
     cin >> umurStr;
     bool valid = true;
     for(int i = 0; i < umurStr.length(); i++){
@@ -152,15 +202,26 @@ void adminInsertAfterSutradara(ListSutradara &L){
         }
     }
     if(!valid){
-        cout << "Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur harus berupa angka!\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     umur = stoi(umurStr);
     if(umur < 0 || umur > 150){
-        cout << "Error: Umur tidak valid! Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "| [!] Error: Umur tidak valid!\n";
+        cout << "| Harus antara 0-150.\n";
+        cout << "|\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara S = buatSutradaraNode(id, nama, umur);
     insertAfterSutradara(L, idPatokan, S);
-    cout << "Sutradara berhasil ditambahkan setelah " << idPatokan << "!\n";
+    cout << "|\n";
+    cout << "+=============================================+\n";
+    cout << "| [BERHASIL] Sutradara berhasil ditambahkan\n";
+    cout << "|            setelah " << idPatokan << "!\n";
+    cout << "+=============================================+\n";
 }

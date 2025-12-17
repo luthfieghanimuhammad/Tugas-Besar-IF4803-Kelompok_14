@@ -61,22 +61,24 @@ void deleteAfterSutradara(ListSutradara &L, string idPatokan){
 }
 
 void adminTampilSemuaSutradara(ListSutradara L){
-    cout << "\n===== DATA SUTRADARA =====\n";
+    cout << "\n+=============================================+";
+    cout << "\n|         DATA SEMUA SUTRADARA                |";
+    cout << "\n+=============================================+\n";
     if(L.first == nullptr){
-        cout << "Belum ada data sutradara.\n";
-        cout << "==========================\n";
+        cout << "| Belum ada data sutradara.                   |\n";
+        cout << "+=============================================+\n";
         return;
     }
     adrSutradara P = L.first;
     int nomor = 1;
     while(P != nullptr){
-        cout << nomor << ". ID: " << P->id
-             << " | Nama: " << P->nama
-             << " | Umur: " << P->umur << endl;
+        cout << "\n+---------------------------------------------+\n";
+        cout << "| " << nomor << ". " << P->nama << " (" << P->umur << " tahun)\n";
+        cout << "|    ID: " << P->id << "\n";
+        cout << "+---------------------------------------------+\n";
         P = P->next;
         nomor++;
     }
-    cout << "==========================\n";
 }
 
 adrSutradara findSutradara(ListSutradara L, string id){

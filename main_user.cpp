@@ -494,6 +494,10 @@ void userTampilSemuaFilm(ListSutradara L){
                 no++;
             }
         }
+        if(S->next != nullptr){
+            cout << "|\n";
+            cout << "+---------------------------------------------+\n";
+        }
         S = S->next;
     }
     cout << "|\n";

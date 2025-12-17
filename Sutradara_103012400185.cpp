@@ -58,10 +58,6 @@ void adminInsertFirstSutradara(ListSutradara &L){
     int umur;
     cout << "ID Sutradara: ";
     cin >> id;
-    if(id.empty()){
-        cout << "Error: ID Sutradara tidak boleh kosong!\n";
-        return;
-    }
     if(cariSutradaraById(L, id) != nullptr){
         cout << "Error: ID Sutradara sudah digunakan! Gunakan ID yang berbeda.\n";
         return;
